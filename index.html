@@ -1,793 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Cyber Threat Intelligence Analyst</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #e4e6ea;
-            background: #0a0a0a;
-            min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Animated background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 0, 150, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(0, 150, 255, 0.05) 0%, transparent 50%);
-            z-index: -1;
-            animation: backgroundShift 15s ease-in-out infinite alternate;
-        }
-
-        @keyframes backgroundShift {
-            0% { opacity: 0.3; }
-            100% { opacity: 0.6; }
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .portfolio-card {
-            background: rgba(15, 15, 20, 0.9);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            overflow: hidden;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            position: relative;
-            padding: 60px 40px;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                repeating-linear-gradient(
-                    90deg,
-                    transparent,
-                    transparent 100px,
-                    rgba(0, 255, 255, 0.03) 100px,
-                    rgba(0, 255, 255, 0.03) 101px
-                );
-            animation: scan 8s linear infinite;
-        }
-
-        @keyframes scan {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        .profile-section {
-            position: relative;
-            z-index: 2;
-        }
-
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            background: linear-gradient(135deg, #00d4ff, #ff0080);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            font-weight: bold;
-            color: white;
-            border: 3px solid rgba(0, 255, 255, 0.5);
-            box-shadow: 
-                0 0 30px rgba(0, 212, 255, 0.3),
-                inset 0 0 20px rgba(255, 255, 255, 0.1);
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from { box-shadow: 0 0 30px rgba(0, 212, 255, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1); }
-            to { box-shadow: 0 0 50px rgba(0, 212, 255, 0.5), inset 0 0 30px rgba(255, 255, 255, 0.2); }
-        }
-
-        .name {
-            font-size: 3em;
-            font-weight: 700;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #00d4ff, #ff0080);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
-        }
-
-        .title {
-            font-size: 1.4em;
-            color: #00d4ff;
-            margin-bottom: 30px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 20px;
-            background: rgba(0, 212, 255, 0.1);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            font-size: 0.9em;
-        }
-
-        .contact-item:hover {
-            background: rgba(0, 212, 255, 0.2);
-            border-color: rgba(0, 212, 255, 0.5);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.2);
-        }
-
-        .main-content {
-            padding: 50px 40px;
-        }
-
-        .section {
-            margin-bottom: 60px;
-            opacity: 0;
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-
-        .section:nth-child(2) { animation-delay: 0.2s; }
-        .section:nth-child(3) { animation-delay: 0.4s; }
-        .section:nth-child(4) { animation-delay: 0.6s; }
-        .section:nth-child(5) { animation-delay: 0.8s; }
-
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-
-        .section-title {
-            font-size: 2.2em;
-            color: #00d4ff;
-            margin-bottom: 30px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, #00d4ff, #ff0080);
-            border-radius: 1px;
-        }
-
-        .about-text {
-            font-size: 1.1em;
-            color: #b8bcc8;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .skills-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .skill-category {
-            background: rgba(26, 26, 46, 0.6);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 15px;
-            padding: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .skill-category:hover {
-            border-color: rgba(0, 212, 255, 0.5);
-            background: rgba(26, 26, 46, 0.8);
-            transform: translateY(-5px);
-        }
-
-        .skill-category h3 {
-            color: #00d4ff;
-            margin-bottom: 15px;
-            font-size: 1.2em;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .skill-list {
-            list-style: none;
-        }
-
-        .skill-list li {
-            color: #b8bcc8;
-            margin-bottom: 8px;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .skill-list li::before {
-            content: '▶';
-            position: absolute;
-            left: 0;
-            color: #ff0080;
-            font-size: 0.8em;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .project-card {
-            background: rgba(26, 26, 46, 0.6);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .project-card:hover {
-            border-color: rgba(0, 212, 255, 0.5);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .project-header {
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            padding: 20px;
-            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
-        }
-
-        .project-title {
-            color: #00d4ff;
-            font-size: 1.3em;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .project-link {
-            color: #ff0080;
-            text-decoration: none;
-            font-size: 0.9em;
-        }
-
-        .project-link:hover {
-            text-decoration: underline;
-        }
-
-        .project-content {
-            padding: 20px;
-        }
-
-        .project-description {
-            color: #b8bcc8;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .project-features {
-            list-style: none;
-        }
-
-        .project-features li {
-            color: #b8bcc8;
-            margin-bottom: 8px;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .project-features li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #00d4ff;
-            font-weight: bold;
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .blog-card {
-            background: rgba(26, 26, 46, 0.6);
-            border: 1px solid rgba(255, 0, 128, 0.2);
-            border-radius: 12px;
-            padding: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .blog-card:hover {
-            border-color: rgba(255, 0, 128, 0.5);
-            transform: translateY(-5px);
-        }
-
-        .blog-title {
-            color: #ff0080;
-            font-size: 1.2em;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .blog-description {
-            color: #b8bcc8;
-            font-style: italic;
-            line-height: 1.5;
-        }
-
-        .resume-section {
-            text-align: center;
-            background: rgba(26, 26, 46, 0.4);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 15px;
-            padding: 30px;
-            margin: 40px 0;
-        }
-
-        .resume-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #00d4ff, #ff0080);
-            color: white;
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1em;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
-        }
-
-        .resume-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
-        }
-
-        .cta-section {
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            margin: 50px -40px -50px;
-            padding: 50px 40px;
-            text-align: center;
-            border-top: 1px solid rgba(0, 212, 255, 0.2);
-        }
-
-        .cta-title {
-            font-size: 2.2em;
-            color: #00d4ff;
-            margin-bottom: 20px;
-        }
-
-        .cta-text {
-            font-size: 1.1em;
-            color: #b8bcc8;
-            margin-bottom: 30px;
-        }
-
-        .contact-methods {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-        }
-
-        .contact-method {
-            background: rgba(0, 212, 255, 0.1);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            padding: 12px 25px;
-            border-radius: 25px;
-            color: #e4e6ea;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .contact-method:hover {
-            background: rgba(0, 212, 255, 0.2);
-            border-color: rgba(0, 212, 255, 0.5);
-            transform: translateY(-2px);
-        }
-
-        .availability {
-            margin-top: 30px;
-        }
-
-        .availability h4 {
-            color: #00d4ff;
-            margin-bottom: 15px;
-        }
-
-        .availability-list {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .availability-item {
-            background: rgba(255, 0, 128, 0.1);
-            border: 1px solid rgba(255, 0, 128, 0.3);
-            padding: 8px 20px;
-            border-radius: 20px;
-            color: #ff0080;
-            font-size: 0.9em;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            
-            .header {
-                padding: 40px 20px;
-            }
-            
-            .name {
-                font-size: 2.2em;
-            }
-            
-            .main-content {
-                padding: 30px 20px;
-            }
-            
-            .contact-info {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .projects-grid,
-            .skills-section,
-            .blog-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .cta-section {
-                margin: 40px -20px -30px;
-                padding: 40px 20px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cyber Threat Intelligence Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0d0d0d;
+      color: #f5f5f5;
+      line-height: 1.7;
+      padding: 2rem;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 4rem;
+      animation: fadeIn 1.5s ease;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      border-bottom: 1px solid #333;
+      margin-top: 3rem;
+      padding-bottom: 0.5rem;
+    }
+    .section {
+      max-width: 800px;
+      margin: auto;
+      animation: fadeInUp 1.2s ease;
+    }
+    .card {
+      background-color: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: scale(1.02);
+    }
+    a {
+      color: #00bfff;
+      text-decoration: none;
+    }
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      font-size: 0.9rem;
+      color: #888;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="portfolio-card">
-            <div class="header">
-                <div class="profile-section">
-                    <div class="profile-img">MJ</div>
-                    <h1 class="name">Mojo Jojo</h1>
-                    <p class="title">Threat Intelligence Analyst</p>
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <span>📍</span>
-                            <span>Based in Bangalore</span>
-                        </div>
-                        <div class="contact-item">
-                            <span>📧</span>
-                            <span>mojojojo@example.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <span>🔗</span>
-                            <span>LinkedIn Profile</span>
-                        </div>
-                        <div class="contact-item">
-                            <span>🌐</span>
-                            <span>Medium Blog</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <header>
+    <h1>[Your Name]</h1>
+    <p>Cyber Threat Intelligence Analyst | Dark Web Researcher | OSINT Enthusiast</p>
+    <p>
+      📍 [Your City] | <a href="mailto:your.email@example.com">Email</a> |
+      <a href="#">LinkedIn</a>
+    </p>
+  </header>
 
-            <div class="main-content">
-                <section class="section">
-                    <h2 class="section-title">🔹 About Me</h2>
-                    <p class="about-text">
-                        I'm a CTI analyst with deep experience tracking ransomware groups, data breaches, and cybercriminal activity across the dark web, Telegram, and underground forums. Currently part of the team behind <strong>FalconFeeds.io</strong>, I focus on curating and delivering actionable threat intelligence to help organizations stay ahead of evolving cyber threats.
-                    </p>
-                    <p class="about-text">
-                        Over the past few years, I've immersed myself in the underground cyber threat landscape—monitoring hacker forums, Telegram leak channels, and ransomware blogs. My work involves identifying early indicators of compromise (IOCs), profiling threat actors, and curating high-confidence intelligence for defenders. As a core analyst behind <strong>FalconFeeds.io</strong>, I've helped shape public threat dashboards and internal tooling used to track ransomware attacks, CVEs, and actor campaigns in real-time.
-                    </p>
-                    <p class="about-text">
-                        I enjoy translating chaos into clarity—filtering out noise, finding the signal, and helping security teams make informed decisions.
-                    </p>
-                </section>
-
-                <section class="section">
-                    <h2 class="section-title">🛠 Skills & Tools</h2>
-                    <div class="skills-section">
-                        <div class="skill-category">
-                            <h3>🔐 Threat Intelligence Domains</h3>
-                            <ul class="skill-list">
-                                <li>Ransomware monitoring & leak tracking</li>
-                                <li>Threat actor profiling (aliases, TTPs, motivations)</li>
-                                <li>CVE enrichment and exploitation tracking</li>
-                                <li>IOC validation and reporting</li>
-                            </ul>
-                        </div>
-                        <div class="skill-category">
-                            <h3>🧠 OSINT & Recon Platforms</h3>
-                            <ul class="skill-list">
-                                <li>VirusTotal, Shodan, FOFA, Censys, URLScan.io</li>
-                                <li>Abuse.ch, Maltego, Spiderfoot</li>
-                                <li>Telegram & dark web source monitoring</li>
-                            </ul>
-                        </div>
-                        <div class="skill-category">
-                            <h3>💻 Scripting & Automation</h3>
-                            <ul class="skill-list">
-                                <li>Python (forum parsing, alerting, data formatting)</li>
-                                <li>Bash (light CLI automation)</li>
-                            </ul>
-                        </div>
-                        <div class="skill-category">
-                            <h3>📚 Documentation & Collaboration</h3>
-                            <ul class="skill-list">
-                                <li>Confluence, Notion, Google Docs</li>
-                                <li>Jira, Slack, GitHub</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="section">
-                    <h2 class="section-title">📊 Featured Work / Projects</h2>
-                    <div class="projects-grid">
-                        <div class="project-card">
-                            <div class="project-header">
-                                <h3 class="project-title">🔹 FalconFeeds.io – Threat Intelligence Platform</h3>
-                                <a href="https://falconfeeds.io" class="project-link">🔗 https://falconfeeds.io</a>
-                            </div>
-                            <div class="project-content">
-                                <p class="project-description">
-                                    Real-time threat intelligence platform delivering actionable insights from dark web sources and threat actor activities.
-                                </p>
-                                <ul class="project-features">
-                                    <li>Worked on real-time threat feeds, ransomware dashboards, and actor profiles</li>
-                                    <li>Sourced and validated threats from dark web forums, Telegram channels, and ransomware blogs</li>
-                                    <li>Enriched CVE and campaign modules with underground chatter and public indicators</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="project-card">
-                            <div class="project-header">
-                                <h3 class="project-title">🔹 Telegram Threat Monitor</h3>
-                                <span class="project-link">*(Internal Script)*</span>
-                            </div>
-                            <div class="project-content">
-                                <p class="project-description">
-                                    Automated monitoring system for high-risk Telegram channels to detect breach announcements and threat actor communications.
-                                </p>
-                                <ul class="project-features">
-                                    <li>Monitored high-risk Telegram channels for breach announcements and keywords</li>
-                                    <li>Alerted the team instantly about new leaks or incident chatter</li>
-                                    <li>Helped speed up dashboard updates and alert curation</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="project-card">
-                            <div class="project-header">
-                                <h3 class="project-title">🔹 Threat Actor Profiles</h3>
-                                <span class="project-link">*(Internal Contribution)*</span>
-                            </div>
-                            <div class="project-content">
-                                <p class="project-description">
-                                    Comprehensive intelligence dossiers tracking threat actors across multiple platforms and campaigns.
-                                </p>
-                                <ul class="project-features">
-                                    <li>Built intelligence dossiers linking actors to aliases, forums, tools, and regions</li>
-                                    <li>Analyzed language patterns and migration behavior post-forum takedowns</li>
-                                    <li>Used for actor correlation and campaign attribution</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="section">
-                    <h2 class="section-title">📰 Blog Posts & Research</h2>
-                    <p class="about-text">Sharing intelligence stories from the underground:</p>
-                    <div class="blog-grid">
-                        <div class="blog-card">
-                            <h3 class="blog-title">Nytheon AI: Malicious AI Rising from the Dark Web</h3>
-                            <p class="blog-description">
-                                Exploring an emerging AI tool designed for cybercrime operations.
-                            </p>
-                        </div>
-                        <div class="blog-card">
-                            <h3 class="blog-title">Ransomware Negotiations in 2025</h3>
-                            <p class="blog-description">
-                                Trends and language used by ransomware groups in victim communications.
-                            </p>
-                        </div>
-                        <div class="blog-card">
-                            <h3 class="blog-title">How Telegram Became the Dark Web's Front Door</h3>
-                            <p class="blog-description">
-                                Shift in cybercriminal operations from forums to encrypted messaging apps.
-                            </p>
-                        </div>
-                    </div>
-                    <p style="text-align: center; margin-top: 30px; color: #00d4ff; font-style: italic;">
-                        👉 More articles coming soon. Medium: medium.com/@yourhandle
-                    </p>
-                </section>
-
-                <div class="resume-section">
-                    <h2 class="section-title">📄 Resume Download</h2>
-                    <p style="color: #b8bcc8; margin-bottom: 20px;">
-                        📥 Download my cybersecurity resume here:
-                    </p>
-                    <a href="#" class="resume-button">🔗 Download Resume PDF</a>
-                </div>
-
-                <div class="cta-section">
-                    <h2 class="cta-title">📬 Contact Me</h2>
-                    <p class="cta-text">
-                        Interested in hiring, collaborating, or discussing CTI research?
-                    </p>
-                    
-                    <div class="contact-methods">
-                        <a href="mailto:your.email@example.com" class="contact-method">
-                            📧 Email: your.email@example.com
-                        </a>
-                        <a href="#" class="contact-method">
-                            🔗 LinkedIn: linkedin.com/in/yourprofile
-                        </a>
-                        <a href="#" class="contact-method">
-                            🌐 Blog: medium.com/@yourhandle
-                        </a>
-                    </div>
-
-                    <div class="availability">
-                        <h4>Open to:</h4>
-                        <div class="availability-list">
-                            <span class="availability-item">✅ Remote full-time roles</span>
-                            <span class="availability-item">✅ Freelance CTI projects</span>
-                            <span class="availability-item">✅ OSINT + threat research collaborations</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="section">
+    <h2>About Me</h2>
+    <div class="card">
+      <p>I specialize in tracking ransomware, breaches, and emerging cyber threats across dark web forums, Telegram channels, and leak sites. As part of the team at <a href="https://falconfeeds.io" target="_blank">FalconFeeds.io</a>, I provide curated threat intelligence for defenders worldwide.</p>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Enhanced intersection observer for animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
+    <h2>Skills & Tools</h2>
+    <div class="card">
+      <ul>
+        <li>Threat Monitoring: Dark web, Telegram, Ransomware leak sites</li>
+        <li>OSINT: Shodan, FOFA, VirusTotal, Censys, URLScan</li>
+        <li>Scripting: Python automation for scraping and alerting</li>
+        <li>Dashboards: FalconFeeds, CVE tracking, Actor profiling</li>
+      </ul>
+    </div>
 
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
-                    }
-                });
-            }, observerOptions);
+    <h2>Projects</h2>
+    <div class="card">
+      <strong>FalconFeeds.io</strong>
+      <p>Contributed to threat feed logic, actor directories, and campaign monitoring dashboards. Collected and curated data from underground sources.</p>
+    </div>
+    <div class="card">
+      <strong>Telegram Threat Monitor</strong>
+      <p>Internal tool for tracking breach alerts and leak chatter across threat actor Telegram channels.</p>
+    </div>
+    <div class="card">
+      <strong>Threat Actor Profiling</strong>
+      <p>Built dossiers on known threat groups—aliases, tactics, forum behavior, and campaign history.</p>
+    </div>
 
-            // Observe all cards
-            document.querySelectorAll('.skill-category, .project-card, .blog-card').forEach(card => {
-                observer.observe(card);
-            });
+    <h2>Blog Highlights</h2>
+    <div class="card">
+      <ul>
+        <li><strong>Nytheon AI:</strong> Investigating a malicious AI promoted on the dark web</li>
+        <li><strong>Telegram = The New Dark Web:</strong> Shift in threat actor communication channels</li>
+        <li><strong>Ransomware Negotiations:</strong> Actor behavior and trends behind the scenes</li>
+      </ul>
+    </div>
 
-            // Add typing effect to title
-            const title = document.querySelector('.title');
-            const titleText = title.textContent;
-            title.textContent = '';
-            
-            let i = 0;
-            const typeWriter = () => {
-                if (i < titleText.length) {
-                    title.textContent += titleText.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 100);
-                }
-            };
-            
-            setTimeout(typeWriter, 1000);
+    <h2>Resume</h2>
+    <div class="card">
+      <p><a href="#">📄 Download My Resume (PDF)</a></p>
+    </div>
 
-            // Add click handlers for contact items
-            document.querySelectorAll('.contact-item').forEach(item => {
-                item.addEventListener('click', function() {
-                    const text = this.textContent.trim();
-                    if (text.includes('@')) {
-                        window.open('mailto:' + text.split(' ')[1]);
-                    }
-                });
-            });
+    <h2>Contact</h2>
+    <div class="card">
+      <p>Interested in collaborating or hiring me?</p>
+      <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+      <p>LinkedIn: <a href="#">linkedin.com/in/yourprofile</a></p>
+    </div>
+  </div>
 
-            // Add glitch effect to name on hover
-            const nameElement = document.querySelector('.name');
-            nameElement.addEventListener('mouseenter', function() {
-                this.style.textShadow = '0 0 30px rgba(0, 212, 255, 0.8), 2px 2px 0px rgba(255, 0, 128, 0.8)';
-            });
-            
-            nameElement.addEventListener('mouseleave', function() {
-                this.style.textShadow = '0 0 30px rgba(0, 212, 255, 0.3)';
-            });
-
-            // Add terminal-style cursor to section titles
-            document.querySelectorAll('.section-title').forEach(title => {
-                const cursor = document.createElement('span');
-                cursor.textContent = '_';
-                cursor.style.animation = 'blink 1s infinite';
-                cursor.style.color = '#00d4ff';
-                title.appendChild(cursor);
-            });
-
-            // Add blink animation
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes blink {
-                    0%, 50% { opacity: 1; }
-                    51%, 100% { opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
-        });
-    </script>
+  <footer>
+    &copy; 2025 [Your Name]. All rights reserved.
+  </footer>
 </body>
 </html>
