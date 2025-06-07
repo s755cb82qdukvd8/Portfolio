@@ -39,7 +39,10 @@ nav a:hover {
   justify-content: space-between;
   align-items: center;
   padding: 100px 60px;
-  background-color: #0d0d0d;
+  background-image: url("./images/hero.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .hero-text h4 {
@@ -103,8 +106,7 @@ nav a:hover {
 }
 
 .about-content img {
-  width: 250px;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 .details {
